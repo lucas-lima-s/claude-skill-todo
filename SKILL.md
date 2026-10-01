@@ -1,6 +1,6 @@
 ---
 name: todo
-description: 'Manage the user''s PERSISTENT cross-session TODO list (data/TODO.md, bidirectionally synced with the Notion page "TODO"). Use when the user triggers /todo, asks to add/list/complete/remove items from their personal list ("adiciona na minha lista", "anota pra depois", "o que tá pendente?", "marca X como feito"), or mentions a future idea worth saving ("uma hora preciso fazer X" → offer to add it). NOT for tracking steps of the current session''s task — only for items that must survive the conversation.'
+description: "Lista de TODO persistente entre sessões (data/TODO.md, sincronizada com a página \"TODO\" do Notion). Use em /todo, \"adiciona na minha lista\", \"anota pra depois\", \"o que tá pendente?\", \"marca X como feito\" ou ideia futura. Não é para passos da sessão atual."
 ---
 
 # Todo — Persistent Task List + Notion Sync
