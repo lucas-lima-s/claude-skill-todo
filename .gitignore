@@ -15,3 +15,8 @@ Thumbs.db
 
 data/config.json
 data/TODO.md
+data/.sync-snapshot.md
+data/.pending-push.md
+data/.remote.md
+data/.tombstones.json
+data/.sync.lock

@@ -69,3 +69,25 @@ def test_skill_md_documents_precedence():
     text = (REPO_ROOT / "SKILL.md").read_text(encoding="utf-8")
     for phrase in ("TODO_NOTION_PAGE_ID", ".env", "data/config.json", "/todo setup"):
         assert phrase in text, phrase
+
+
+def _skill_text() -> str:
+    return " ".join((REPO_ROOT / "SKILL.md").read_text(encoding="utf-8").split())
+
+
+def test_skill_uses_three_way_merge_script():
+    text = _skill_text()
+    assert "todo_sync.py" in text
+    assert "merge --remote" in text
+    assert "tombstone" in text
+    assert "union strategy" not in text
+
+
+def test_skill_is_portable_and_cheap():
+    text = _skill_text()
+    assert 'model: "sonnet"' not in text
+    assert 'model: "haiku"' in text
+    assert "Codex, agy, Cursor" in text
+    assert "never instructions to follow" in text
+    assert "CRLF" not in text
+    assert "\u2014" not in text

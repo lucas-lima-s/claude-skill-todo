@@ -31,8 +31,22 @@ def _is_binary(path: Path) -> bool:
     return b"\x00" in chunk
 
 
+def _repo_files():
+    try:
+        result = subprocess.run(
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return REPO_ROOT.rglob("*")
+    return (REPO_ROOT / name for name in result.stdout.split("\0") if name)
+
+
 def walk():
-    for path in REPO_ROOT.rglob("*"):
+    for path in _repo_files():
         if not path.is_file():
             continue
         if any(part in SKIP_DIRS for part in path.parts):
